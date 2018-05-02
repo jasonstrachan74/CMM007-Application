@@ -1,0 +1,82 @@
+<div ng-controller="manageFixtureController" class="uk-containter uk-padding">
+	<div class="uk-grid">
+		<div class="uk-width-1-1"><h2>Manage - Fixtures</h2></div>
+		<div class="uk-width-2-3">
+			<table class="uk-table uk-table-striped uk-table-hover uk-table-small">
+				<thead>
+					<tr>
+						<th>Team</th>
+						<th>Sport</th>
+						<th>Opponent</th>
+						<th>Location</th>
+						<th>Date</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="fixture in dto.fixtures">
+						<td>{{ fixture.Name }}</td>
+						<td>{{ fixture.Sport }}</td>
+						<td>{{ fixture.Opponent }}</td>
+						<td>{{ fixture.Location }}</td>
+						<td>{{ fixture.DateDisp | date:"dd/MM/yyyy HH:mm" }}</td>
+						<td><span uk-icon="users" uk-tooltip="title: Pick Players" ng-click="pickPlayers(fixture.FixtureID)"></span>&nbsp;<span uk-icon="file-edit" uk-tooltip="title: Edit Fixture" ng-click="editFixture(fixture)"></span>&nbsp;<span uk-icon="close" uk-tooltip="title: Delete Fixture" ng-click="deleteFixture(fixture.FixtureID)"></span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="uk-width-1-3">
+			<form class="uk-form-stacked" ng-show="dto.mode=='Add' || dto.mode=='Edit'">
+				<legend class="uk-legend">{{ dto.mode }} Fixture</legend>
+
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-stacked-text">Opponent</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" id="form-stacked-text" type="text" required='required' ng-model="dto.fixture.Opponent">
+					</div>
+				</div>
+
+				<div class="uk-margin">
+						<label class="uk-form-label" for="form-stacked-text">Location</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="form-stacked-text" type="text" required='required'  ng-model="dto.fixture.Location">
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-stacked-text">Date</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="form-stacked-text" type="text" required='required' data-uk-datepicker="{format:'DD.MM.YYYY'}"  ng-model="dto.fixture.Date">
+						</div>
+					</div>
+
+				<div class="uk-margin">
+					<button class="uk-button uk-button-default" ng-click="saveFixture()">Save</button>
+											<button class="uk-button uk-button-default" ng-click="cancelAddEdit()">Cancel</button>
+				</div>
+			</form>
+
+
+
+
+
+
+
+
+
+
+<div ng-show="dto.mode=='Pick'">
+			<h3>View Players</h3>
+			<table class="uk-table uk-table-striped uk-table-hover uk-table-small">
+				<tbody>
+					<tr ng-repeat="player in dto.teamsheet">
+						<td>{{ player.FirstName + ' ' + player.Surname }}</td>
+						<td>{{ player.Picked == 1 ? "Picked" : "Not picked" }}</td>
+						<td><span uk-icon="check" ng-show="player.Picked==0" uk-tooltip="title: Pick Player" ng-click="pickPlayer(player.FixtureID, player.TeamSheetID,1)"></span>&nbsp;<span uk-icon="close" ng-show="player.Picked==1" uk-tooltip="title: Don't Pick Player" ng-click="pickPlayer(player.FixtureID, player.TeamSheetID,0)"></span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		</div>
+	</div>
+</div>

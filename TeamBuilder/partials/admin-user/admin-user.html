@@ -1,0 +1,82 @@
+<div ng-controller="adminUserController" class="uk-containter uk-padding">
+	<div class="uk-grid">
+		<div class="uk-width-1-1">
+			<h2>Admin - Users</h2>
+		</div>
+		<div class="uk-width-2-3">
+			<table class="uk-table uk-table-striped uk-table-hover uk-table-small">
+				<thead>
+					<tr>
+						<th>Email</th>
+						<th>FirstName</th>
+						<th>Surname</th>
+						<th>Admin</th>
+						<th>Archived</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="user in dto.users">
+						<td>{{ user.Email }}</td>
+						<td>{{ user.FirstName }}</td>
+						<td>{{ user.Surname }}</td>
+						<td>{{ user.isAdmin==1 ? "Yes" : "No" }}</td>
+						<td>{{ user.isArchived==1 ? "Yes" : "No" }}</td>
+						<td><span uk-icon="file-edit" uk-tooltip="title: Edit User" ng-click="editUser(user)"></span>&nbsp;<span uk-icon="close" uk-tooltip="title: Delete User" ng-click="deleteUser(user.UserId)"></span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="uk-width-1-3">
+		
+		<form class="uk-form-stacked" ng-show="dto.mode=='Edit'">
+					
+					<h3>{{ dto.mode }} User</h3>
+
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-stacked-text">Email</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="form-stacked-text" type="email" required='required' placeholder="email@email.com" ng-model="dto.user.Email">
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-stacked-text">FirstName</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="form-stacked-text" type="text" required='required'  ng-model="dto.user.FirstName">
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-stacked-text">Surname</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="form-stacked-text" type="text" required='required'  ng-model="dto.user.Surname">
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-stacked-text">Is Admin</label>
+						<div class="uk-form-controls">
+							<label><input class="uk-radio" type="radio" ng-model="dto.user.isAdmin" value="1"> Yes</label>
+							<label><input class="uk-radio" type="radio"  ng-model="dto.user.isAdmin" value="0" checked> No</label>
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-stacked-text">Is Archived</label>
+						<div class="uk-form-controls">
+							<label><input class="uk-radio" type="radio" ng-model="dto.user.isArchived" value="1"> Yes</label>
+							<label><input class="uk-radio" type="radio"  ng-model="dto.user.isArchived" value="0" checked> No</label>
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						<button class="uk-button uk-button-default" ng-click="saveUser()">Save</button>
+						<button class="uk-button uk-button-default" ng-click="cancelAddEdit()">Cancel</button>
+					</div>
+
+				</form>
+		
+		</div>
+	</div>
+</div>

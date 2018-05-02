@@ -1,0 +1,33 @@
+<div ng-controller="myAvailabilityController" class="uk-containter uk-padding">
+	<div class="uk-grid">
+		<div class="uk-width-1-1">
+			<h2>My availability</h2>
+		</div>
+		<div class="uk-width-1-1">
+			<table class="uk-table uk-table-striped uk-table-hover uk-table-small">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Sport</th>
+						<th>Opponent</th>
+						<th>Location</th>
+						<th>Date</th>
+						<th>Availability</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="fixture in dto.fixtures">
+						<td>{{ fixture.Name }}</td>
+						<td>{{ fixture.Sport }}</td>
+						<td>{{ fixture.Opponent }}</td>
+						<td>{{ fixture.Location }}</td>
+						<td>{{ fixture.Date | date:"dd/MM/yyyy HH:mm" }}</td>
+						<td>{{ responseStatus(fixture.Available); }}</td>
+						<td><span uk-icon="check"  ng-show="fixture.Available==null || fixture.Available==0" uk-tooltip="title: Available" ng-click="setAvailability(fixture.Member_UserID,fixture.FixtureID,1, fixture.TeamSheetID)"></span><span uk-icon="close" ng-show="fixture.Available==null || fixture.Available==1" uk-tooltip="title: Not Available" ng-click="setAvailability(fixture.Member_UserID,fixture.FixtureID,0, fixture.TeamSheetID)"></span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

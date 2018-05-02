@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="teamBuilder"> 
+<head>
+<title>Sports Team Builder</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/css/uikit.min.css" />
+</head>
+<body>
+	<header ng-include="'includes/navbar.html'"></header>
+	<div ng-view><!--partial files will be ajaxed in here--></div>
+
+	<!-- jQuery is required -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- UIkit JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.24/js/uikit.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.24/js/uikit-icons.min.js"></script>
+
+	<!--AngularJS-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.min.js"></script>
+	<!--ngRoute module-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.min.js"></script>
+
+	<!--app.js-->
+	<script src="app.js"></script>
+	<script src="partials/login/login.js"></script>
+	<script src="partials/register/register.js"></script>
+
+	<script src="partials/fixtures/fixtures.js"></script>
+	
+	<script src="partials/my-squads/my-squads.js"></script>
+	<script src="partials/my-availability/my-availability.js"></script>
+	
+	<script src="partials/manage-fixtures/manage-fixtures.js"></script>
+	<script src="partials/admin-user/admin-user.js"></script>
+	<script src="partials/admin-team/admin-team.js"></script>
+</body>
+</html>
